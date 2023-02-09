@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public float attackDownMaxCD;
     public float attackChainTimerMax;
 
+    public float bouncePercent;
+
     private bool dashOnCD;
     private bool attackOnCD;
     private bool myJump = false;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private int jumpCount;
     private float jumpTime;
+    private bool releaseJump;
 
     public Vector3 boxSize;
     public Vector3 sideAttackSize;
@@ -77,6 +80,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             myJump = true;
+        }
+        if(Input.GetButtonUp("Jump")){
+            releaseJump = true;
         }
 
         //if users hits shift dash
@@ -136,6 +142,14 @@ public class PlayerController : MonoBehaviour
                 myJump = false;
             }
         }
+        //TODO: Make this feel better
+        if(releaseJump && !myAttack && myRB.velocity.y > 0){
+                myRB.velocity = new Vector2(myRB.velocity.x, 0);
+                releaseJump = false;
+        }
+        else if(releaseJump && myRB.velocity.y < 0){
+            releaseJump = false;
+        }
 
         if (transform.position.y < -15)
         {
@@ -194,7 +208,7 @@ public class PlayerController : MonoBehaviour
         dashOnCD = false;
     }
 
-    
+    //maybe move all attack functions to new script?
     private void Attack()
     {
         switch (Input.GetAxisRaw("Vertical"))
@@ -298,7 +312,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("hit down");
                 SendDamage(enemyHit.transform, attackDownDmg);
-                myRB.velocity = new Vector2(prevVel.x, jumpForce * .6f);
+                myRB.velocity = new Vector2(prevVel.x, jumpForce * bouncePercent);
             }
             else
             {
