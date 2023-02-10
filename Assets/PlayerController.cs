@@ -128,6 +128,7 @@ public class PlayerController : MonoBehaviour
         //if user hits jump and is not attacking or dashing then jump
         if (myJump == true && !myDash && !myAttack)
         {
+            releaseJump = false;
             if (jumpCount > 0)
             {
                 jumpTime = 0;
