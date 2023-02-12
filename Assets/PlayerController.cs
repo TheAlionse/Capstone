@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     public float speed;
     public float jumpForce;
     public float dashSpeed;
     public float dashDistance;
     public float dashMaxCD;
+
+    public float fallFloor; //where player can fall to before getting reset
 
     public int attack1Dmg;
     public int attack2Dmg;
@@ -54,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     public Animator myAnim;
 
+    public static bool readInput;
+
     //Used for gizmo checking
     private float tempHor;
 
@@ -62,111 +67,131 @@ public class PlayerController : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponent<SpriteRenderer>();
         jumpCount = maxJumpCount;
+        readInput = true;
     }
     // Update is called once per frame
 
     private void Update()
     {
-        myHorizontal = Input.GetAxisRaw("Horizontal");
-
-        //if user hits lmb attack
-        if (Input.GetButton("Fire1") && !attackOnCD)
+        //check if we are reading inputs
+        if (readInput)
         {
-            if (!myDash && !myAttack)
-                Attack();
-        }
+            myHorizontal = Input.GetAxisRaw("Horizontal");
 
-        //if user hits space jump
-        if (Input.GetButtonDown("Jump"))
-        {
-            myJump = true;
-        }
-        if(Input.GetButtonUp("Jump")){
-            releaseJump = true;
-        }
+            //if user hits lmb attack
+            if (Input.GetButton("Fire1") && !attackOnCD)
+            {
+                if (!myDash && !myAttack)
+                    Attack();
+            }
 
-        //if users hits shift dash
-        if (Input.GetButtonDown("Fire3") && !dashOnCD)
-        { //Left Shift - Dashing
-            if (!myDash && !myAttack)
-                StartCoroutine(Dash(myHorizontal));
+            //TODO: add addtional check for this
+            if( Input.GetButton("Fire2")){
+                if (!myDash && !myAttack)
+                    fireBall();
+            }
+
+            //if user hits space jump
+            if (Input.GetButtonDown("Jump"))
+            {
+                myJump = true;
+            }
+            if (Input.GetButtonUp("Jump"))
+            {
+                releaseJump = true;
+            }
+
+            //if users hits shift dash
+            if (Input.GetButtonDown("Fire3") && !dashOnCD)
+            { //Left Shift - Dashing
+                if (!myDash && !myAttack)
+                    StartCoroutine(Dash(myHorizontal));
+            }
         }
     }
     private void FixedUpdate()
     {
-        //check if player is grounded
-        isGrounded();
+        //if we are not reading input don't update anything based on input values
+        if (readInput)
+        {
+            //check if player is grounded
+            isGrounded();
 
-        // don't use movement velocity while dashing or attacking
-        if (!myDash && !myAttack) 
-            //TODO: Doen't work all the time on running hitbox
-            //check if against wall and stop movement (player gets stuck on it otherwise)
-            if (Physics2D.BoxCast(new Vector2(transform.position.x + (.25f * myHorizontal), transform.position.y + .05f), new Vector2(.1f, .52f), 0, transform.forward, maxDistance, layerFloor))
-            {
-                myRB.velocity = new Vector2(0f, myRB.velocity.y);
-            }
-            else
-            {
-                myRB.velocity = new Vector2(myHorizontal * speed, myRB.velocity.y);
-                //flips sprite and starts running animation
-                switch (myHorizontal)
+            // don't use movement velocity while dashing or attacking
+            if (!myDash && !myAttack)
+                //TODO: Doesn't work all the time on running hitbox
+                //check if against wall and stop movement (player gets stuck on it otherwise)
+                if (Physics2D.BoxCast(new Vector2(transform.position.x + (.25f * myHorizontal), transform.position.y + .05f), new Vector2(.1f, .52f), 0, transform.forward, maxDistance, layerFloor))
                 {
-                    case 1:
-                        myAnim.SetBool("Running", true);
-                        mySR.flipX = false;
-                        break;
-                    case -1:
-                        myAnim.SetBool("Running", true);
-                        mySR.flipX = true;
-                        break;
-                    default:
-                        myAnim.SetBool("Running", false);
-                        break;
+                    myRB.velocity = new Vector2(0f, myRB.velocity.y);
+                }
+                else
+                {
+                    myRB.velocity = new Vector2(myHorizontal * speed, myRB.velocity.y);
+                    //flips sprite and starts running animation
+                    switch (myHorizontal)
+                    {
+                        case 1:
+                            myAnim.SetBool("Running", true);
+                            mySR.flipX = false;
+                            break;
+                        case -1:
+                            myAnim.SetBool("Running", true);
+                            mySR.flipX = true;
+                            break;
+                        default:
+                            myAnim.SetBool("Running", false);
+                            break;
+                    }
+                }
+
+            //if user hits jump and is not attacking or dashing then jump
+            if (myJump == true && !myDash && !myAttack)
+            {
+                releaseJump = false;
+                if (jumpCount > 0)
+                {
+                    jumpTime = 0;
+                    myAnim.SetFloat("Jump Time", jumpTime);
+                    myAnim.SetBool("Jumping", true);
+                    myRB.velocity = new Vector2(myRB.velocity.x, jumpForce);
+                    myJump = false;
+                    --jumpCount;
+                }
+                else
+                {
+                    myJump = false;
                 }
             }
-
-        //if user hits jump and is not attacking or dashing then jump
-        if (myJump == true && !myDash && !myAttack)
-        {
-            releaseJump = false;
-            if (jumpCount > 0)
+            //TODO: Make this feel better
+            if (releaseJump && !myAttack && myRB.velocity.y > 0 && jumpTime > .15f)
             {
-                jumpTime = 0;
-                myAnim.SetFloat("Jump Time", jumpTime);
-                myAnim.SetBool("Jumping", true);
-                myRB.velocity = new Vector2(myRB.velocity.x, jumpForce);
-                myJump = false;
-                --jumpCount;
-            }
-            else
-            {
-                myJump = false;
-            }
-        }
-        //TODO: Make this feel better
-        if(releaseJump && !myAttack && myRB.velocity.y > 0){
                 myRB.velocity = new Vector2(myRB.velocity.x, 0);
                 releaseJump = false;
-        }
-        else if(releaseJump && myRB.velocity.y < 0){
-            releaseJump = false;
-        }
+            }
+            else if (releaseJump && myRB.velocity.y < 0)
+            {
+                releaseJump = false;
+            }
 
-        if (transform.position.y < -15)
-        {
-            //change kill later on
-            //would call the player health class
-            transform.position = Vector3.zero;
-        }
+            if (transform.position.y < fallFloor)
+            {
+                //change kill later on
+                //would call the player health class
+                transform.position = Vector3.zero;
+            }
 
-        //check if player is in attack chain
-        if(attackChainCount > 0){
-            attackChainTimerCur += Time.deltaTime;
-            if(attackChainTimerCur >= attackChainTimerMax){
-                //reset attack chain counter
-                attackChainCount = 0;
-                //reset attack chain timer
-                attackChainTimerCur = 0;
+            //check if player is in attack chain
+            if (attackChainCount > 0)
+            {
+                attackChainTimerCur += Time.deltaTime;
+                if (attackChainTimerCur >= attackChainTimerMax)
+                {
+                    //reset attack chain counter
+                    attackChainCount = 0;
+                    //reset attack chain timer
+                    attackChainTimerCur = 0;
+                }
             }
         }
     }
@@ -228,8 +253,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void fireBall(){
+        //Do the thing
+    }
+
     //If enemy is hit sends damage to them
-    private void SendDamage(Transform enemyTransform, int dmg){
+    private void SendDamage(Transform enemyTransform, int dmg)
+    {
         enemyTransform.SendMessage("takeDamge", dmg);
     }
 
@@ -248,10 +278,12 @@ public class PlayerController : MonoBehaviour
         if (enemyHit)
         {
             Debug.Log("hit side");
-            if(attackChainCount == 2){
+            if (attackChainCount == 2)
+            {
                 SendDamage(enemyHit.transform, attack1Dmg);
             }
-            else{
+            else
+            {
                 SendDamage(enemyHit.transform, attack3Dmg);
             }
         }
@@ -261,7 +293,8 @@ public class PlayerController : MonoBehaviour
         myRB.gravityScale = gravity;
 
         myAnim.SetBool($"Side Attack {attackChainCount + 1}", false);
-        if(attackChainCount == 2){
+        if (attackChainCount == 2)
+        {
             attackOnCD = true;
             yield return new WaitForSeconds(attack3MaxCD);
             attackOnCD = false;
