@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float jumpForce;
     public float dashSpeed;
-    public float dashDistance;
+    public float dashTime;
     public float dashMaxCD;
 
     public float fallFloor; //where player can fall to before getting reset
@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     private float attackChainCount = 0;
     private float attackChainTimerCur;
     private RaycastHit2D enemyHit;
+
+    private bool canFireBall;
 
     public int maxJumpCount;
 
@@ -87,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
             //TODO: add addtional check for this
             if( Input.GetButton("Fire2")){
-                if (!myDash && !myAttack)
+                if (!myDash && !myAttack && canFireBall)
                     fireBall();
             }
 
@@ -219,17 +221,21 @@ public class PlayerController : MonoBehaviour
     IEnumerator Dash(float direction)
     {
         myAnim.SetBool("Dashing", true);
+        //put player on layer where immune
+        gameObject.layer = 10;
         //Debug.Log("Dashing");
         myDash = true;
         myRB.velocity = new Vector2(myRB.velocity.x, 0f);
-        myRB.AddForce(new Vector2(dashDistance * myHorizontal, 0f), ForceMode2D.Impulse);
+        myRB.AddForce(new Vector2(dashSpeed * myHorizontal, 0f), ForceMode2D.Impulse);
         float gravity = myRB.gravityScale;
         myRB.gravityScale = 0;
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(dashTime);
         myDash = false;
         myRB.gravityScale = gravity;
         dashOnCD = true;
         myAnim.SetBool("Dashing", false);
+        //put player back on dmg layer
+        gameObject.layer = 8;
         yield return new WaitForSeconds(dashMaxCD);
         dashOnCD = false;
     }
@@ -254,7 +260,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void fireBall(){
-        //Do the thing
+        //Do the thing lol
+        
     }
 
     //If enemy is hit sends damage to them
@@ -368,7 +375,19 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    //number given from pick up ties to which power up player grabbed and should call given function
+    //This is not for health pick up only for things which should directly involve the controller i.e. abilities or timer decreases
+    public void powerPickUp(int powerNum){
+        switch (powerNum){
+            //Fire ball power pick up
+            case 1:
+                canFireBall = true;
+                break;
+            default:
+                Debug.Log("power num missing");
+                break;
+        } 
+    }
 
     void OnDrawGizmos()
     {

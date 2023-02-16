@@ -5,16 +5,23 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     private int health;
+
     public int maxHealth;
     public Vector3 respawnPoint;
     public GameObject respawnUI;
+    public float invulnTime;
+
     private GameObject healthBarParent;
     private GameObject curHealthBar;
+    private SpriteRenderer mySpriteRender;
+    private Color defaultColor;
 
     private void Start() {
         health = maxHealth;
         healthBarParent = GameObject.FindGameObjectWithTag("HealthBar");
         curHealthBar = healthBarParent.transform.GetChild(0).gameObject;
+        mySpriteRender = gameObject.GetComponent<SpriteRenderer>();
+        defaultColor = mySpriteRender.color;
 
         healthBarParent.transform.localScale = new Vector3(maxHealth * 12, 50,0);
         curHealthBar.transform.localScale = new Vector3(health/maxHealth, 1, 0);
@@ -24,9 +31,14 @@ public class PlayerHealth : MonoBehaviour
         health -= dmg;
         updateCurHpBar();
         if(health <= 0){
+            StopCoroutine("playerGotHit");
+            hitEffects(true);
             Debug.Log("dead");
             PlayerController.readInput = false;
             respawnUI.SetActive(true);
+        }
+        else{
+            StartCoroutine("playerGotHit");
         }
     }
 
@@ -45,6 +57,8 @@ public class PlayerHealth : MonoBehaviour
         gameObject.transform.position = respawnPoint;
         PlayerController.readInput = true;
         respawnUI.SetActive(false);
+        //make sure things called in StopCoroutine are reset
+        hitEffects(false);
     }
 
     public void maxHealthUp(int increase){
@@ -65,5 +79,23 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("called");
         respawnPoint = newRespawnPos;
         healing(maxHealth);
+    }
+
+    IEnumerator playerGotHit(){
+        hitEffects(true);
+        yield return new WaitForSeconds(invulnTime);
+        hitEffects(false);
+        yield return false;
+    }
+
+    private void hitEffects(bool gotHit){
+        if(gotHit){
+            mySpriteRender.color = Color.red;
+            gameObject.layer = 10;
+        }
+        else{
+            mySpriteRender.color = defaultColor;
+            gameObject.layer = 8;
+        }
     }
 }
