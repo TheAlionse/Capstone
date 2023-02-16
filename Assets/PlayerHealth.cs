@@ -60,4 +60,10 @@ public class PlayerHealth : MonoBehaviour
     private void updateMaxHPBar(){
         healthBarParent.transform.localScale = new Vector3(maxHealth * 12, 50,0);
     }
+
+    public void setRespawn(Vector3 newRespawnPos){
+        Debug.Log("called");
+        respawnPoint = newRespawnPos;
+        healing(maxHealth);
+    }
 }

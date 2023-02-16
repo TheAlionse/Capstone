@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int health;
+    //if death of enemy relates to door or something else
+    public GameObject tiedObject;
 
     private SpriteRenderer mySprite;
     private Color defaultColor;
@@ -18,6 +20,9 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log("took damage " + damage);
         StartCoroutine(damageEffect());
         if(health <= 0){
+            if(tiedObject != null){
+                tiedObject.SendMessage("CheckToOpen", gameObject);
+            }
             Destroy(gameObject);
         }
     }
