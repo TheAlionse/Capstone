@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float jumpForce;
+    public float minJumpTime;
     public float dashSpeed;
     public float dashTime;
     public float dashMaxCD;
@@ -166,7 +167,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
             //TODO: Make this feel better
-            if (releaseJump && !myAttack && myRB.velocity.y > 0 && jumpTime > .15f)
+            if (releaseJump && !myAttack && myRB.velocity.y > 0 && jumpTime > minJumpTime)
             {
                 myRB.velocity = new Vector2(myRB.velocity.x, 0);
                 releaseJump = false;

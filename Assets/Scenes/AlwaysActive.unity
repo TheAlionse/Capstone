@@ -1139,7 +1139,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.95
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1205,7 +1205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149851698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.6, y: -3.3, z: 0}
+  m_LocalPosition: {x: -8.77, y: -3.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1225,11 +1225,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1227399757d55e4881e279c5f302388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 8
+  speed: 14
+  jumpForce: 12
+  minJumpTime: 0.15
   dashSpeed: 20
   dashTime: 0.2
-  dashMaxCD: 1.5
+  dashMaxCD: 1
   fallFloor: -500
   attack1Dmg: 1
   attack2Dmg: 1
@@ -1240,7 +1241,7 @@ MonoBehaviour:
   attackUpMaxCD: 0.2
   attackDownMaxCD: 0.5
   attackChainTimerMax: 2
-  bouncePercent: 0.65
+  bouncePercent: 0.75
   maxJumpCount: 2
   boxSize: {x: 0.3, y: 0.05, z: 0}
   sideAttackSize: {x: 1.4, y: 1, z: 0}
