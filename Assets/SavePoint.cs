@@ -13,17 +13,11 @@ public class SavePoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         textDisplay.SetActive(true);
-    }
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (Input.GetButtonDown("Interact"))
-        {
-            Debug.Log("interacted");
-            myPlayer.SendMessage("setRespawn", gameObject.transform.position);
-        }
+        myPlayer.SendMessage("changeSave", true);
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         textDisplay.SetActive(false);
+        myPlayer.SendMessage("changeSave", false);
     }
 }

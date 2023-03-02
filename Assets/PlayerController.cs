@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private RaycastHit2D enemyHit;
 
     private bool canFireBall;
+    private bool onSavePoint;
 
     public int maxJumpCount;
 
@@ -54,6 +55,9 @@ public class PlayerController : MonoBehaviour
     public float maxDistance;
     public LayerMask layerFloor;
     public LayerMask layerEnemy;
+    public GameObject fireballPrefab;
+    public float fireballSpeed;
+    public float fireballCD;
 
     private Rigidbody2D myRB;
     private SpriteRenderer mySR;
@@ -91,7 +95,7 @@ public class PlayerController : MonoBehaviour
             //TODO: add addtional check for this
             if( Input.GetButton("Fire2")){
                 if (!myDash && !myAttack && canFireBall)
-                    fireBall();
+                    StartCoroutine(fireBall());
             }
 
             //if user hits space jump
@@ -109,6 +113,11 @@ public class PlayerController : MonoBehaviour
             { //Left Shift - Dashing
                 if (!myDash && !myAttack)
                     StartCoroutine(Dash(myHorizontal));
+            }
+
+            if(Input.GetButtonDown("Interact") && onSavePoint){
+                //This could cause issues later but likely not
+                SendMessage("setRespawn", gameObject.transform.position);
             }
         }
     }
@@ -260,9 +269,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void fireBall(){
+    IEnumerator fireBall(){
         //Do the thing lol
-        
+        canFireBall = false;
+        Debug.Log("Fireballin");
+        Rigidbody2D myFireball;
+        myFireball = Instantiate(fireballPrefab, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
+        myFireball.AddForce(new Vector2(fireballSpeed * myHorizontal, 0f),ForceMode2D.Impulse);
+        yield return new WaitForSeconds(fireballCD);
+        canFireBall = true;
     }
 
     //If enemy is hit sends damage to them
@@ -388,6 +403,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("power num missing");
                 break;
         } 
+    }
+
+    public void changeSave(bool amOn){
+        onSavePoint = amOn;
     }
 
     void OnDrawGizmos()

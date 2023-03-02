@@ -1205,7 +1205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149851698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.77, y: -3.15, z: 0}
+  m_LocalPosition: {x: -11.7, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1254,6 +1254,9 @@ MonoBehaviour:
   layerEnemy:
     serializedVersion: 2
     m_Bits: 128
+  fireballPrefab: {fileID: 2764102767327257764, guid: 95ad931c841ef9141843cb44ca719545, type: 3}
+  fireballSpeed: 30
+  fireballCD: 2
   myAnim: {fileID: 1149851704}
 --- !u!95 &1149851704
 Animator:
@@ -1306,7 +1309,7 @@ MonoBehaviour:
   maxHealth: 15
   respawnPoint: {x: -5, y: -3, z: 0}
   respawnUI: {fileID: 84819191}
-  invulnTime: 0.1
+  invulnTime: 0.25
 --- !u!1 &1191664663
 GameObject:
   m_ObjectHideFlags: 0
