@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - HealthBar
+  - FireBall
   layers:
   - Default
   - TransparentFX

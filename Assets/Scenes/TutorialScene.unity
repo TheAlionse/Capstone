@@ -602,7 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 0}
 --- !u!1 &98962977
 GameObject:
@@ -910,7 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!61 &221304534
 BoxCollider2D:
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 0}
 --- !u!1 &272160242
 GameObject:
@@ -1732,7 +1732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!61 &411541221
 BoxCollider2D:
@@ -2585,7 +2585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!61 &575436335
 BoxCollider2D:
@@ -3044,7 +3044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!61 &717178605
 BoxCollider2D:
@@ -3453,7 +3453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!61 &811872063
 BoxCollider2D:
@@ -3657,7 +3657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 0}
 --- !u!1 &858519579
 GameObject:
@@ -3705,7 +3705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!61 &858519582
 BoxCollider2D:
@@ -3846,7 +3846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881378635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 169.01, y: 0.26, z: 0}
+  m_LocalPosition: {x: 174.94, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3891,7 +3891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca03c02c3b8012d4e81e5abb555bac22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 1
+  amount: 3
   functionCall: powerPickUp
   destroyOnEnter: 1
 --- !u!212 &881378639
@@ -4785,7 +4785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!61 &977420602
 BoxCollider2D:
@@ -5590,7 +5590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!61 &1214187800
 BoxCollider2D:
@@ -6246,7 +6246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!61 &1292390281
 BoxCollider2D:
@@ -7937,7 +7937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 0}
 --- !u!61 &1622960468
 BoxCollider2D:
@@ -8141,7 +8141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 0}
 --- !u!1 &1747807513
 GameObject:
@@ -8267,7 +8267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 1241362638}
 --- !u!1 &1772750934
 GameObject:
@@ -8938,7 +8938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 0}
 --- !u!61 &1834502404
 BoxCollider2D:
@@ -9079,7 +9079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a0ecfe31796e47bc351ce0e6a2e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   tiedObject: {fileID: 0}
 --- !u!61 &1853069114
 BoxCollider2D:

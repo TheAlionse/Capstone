@@ -146,10 +146,12 @@ public class PlayerController : MonoBehaviour
                         case 1:
                             myAnim.SetBool("Running", true);
                             mySR.flipX = false;
+                            tempHor = myHorizontal;
                             break;
                         case -1:
                             myAnim.SetBool("Running", true);
                             mySR.flipX = true;
+                            tempHor = myHorizontal;
                             break;
                         default:
                             myAnim.SetBool("Running", false);
@@ -236,7 +238,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Dashing");
         myDash = true;
         myRB.velocity = new Vector2(myRB.velocity.x, 0f);
-        myRB.AddForce(new Vector2(dashSpeed * myHorizontal, 0f), ForceMode2D.Impulse);
+        myRB.AddForce(new Vector2(dashSpeed * tempHor, 0f), ForceMode2D.Impulse);
         float gravity = myRB.gravityScale;
         myRB.gravityScale = 0;
         yield return new WaitForSeconds(dashTime);
@@ -275,7 +277,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Fireballin");
         Rigidbody2D myFireball;
         myFireball = Instantiate(fireballPrefab, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
-        myFireball.AddForce(new Vector2(fireballSpeed * myHorizontal, 0f),ForceMode2D.Impulse);
+        myFireball.AddForce(new Vector2(fireballSpeed * tempHor, 0f),ForceMode2D.Impulse);
         yield return new WaitForSeconds(fireballCD);
         canFireBall = true;
     }
@@ -396,7 +398,7 @@ public class PlayerController : MonoBehaviour
     public void powerPickUp(int powerNum){
         switch (powerNum){
             //Fire ball power pick up
-            case 1:
+            case 3:
                 canFireBall = true;
                 break;
             default:
