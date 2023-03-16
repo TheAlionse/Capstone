@@ -190,9 +190,9 @@ public class PlayerController : MonoBehaviour
 
             if (transform.position.y < fallFloor)
             {
-                //change kill later on
-                //would call the player health class
-                transform.position = Vector3.zero;
+                PlayerHealth sn = gameObject.GetComponent<PlayerHealth>();
+                myRB.velocity = Vector2.zero;
+                sn.takeDamage(1000);
             }
 
             //check if player is in attack chain
@@ -275,9 +275,19 @@ public class PlayerController : MonoBehaviour
         //Do the thing lol
         canFireBall = false;
         Debug.Log("Fireballin");
+
+        Vector2 prevVel = myRB.velocity;
+        myRB.velocity = Vector2.zero;
+        float gravity = myRB.gravityScale;
+        myRB.gravityScale = 0;
+        yield return new WaitForSeconds(0.1f);
         Rigidbody2D myFireball;
         myFireball = Instantiate(fireballPrefab, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
         myFireball.AddForce(new Vector2(fireballSpeed * tempHor, 0f),ForceMode2D.Impulse);
+
+        myRB.velocity = prevVel;
+        myRB.gravityScale = gravity;
+
         yield return new WaitForSeconds(fireballCD);
         canFireBall = true;
     }

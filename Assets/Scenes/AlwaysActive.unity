@@ -571,7 +571,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -595,7 +595,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -22}
+  m_LocalPosition: {x: 0, y: 3, z: -15}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1256,7 +1256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149851698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.7, y: -3.5, z: 0}
+  m_LocalPosition: {x: -6.8, y: -113.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1276,8 +1276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1227399757d55e4881e279c5f302388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 14
-  jumpForce: 12
+  speed: 12
+  jumpForce: 10
   minJumpTime: 0.15
   dashSpeed: 20
   dashTime: 0.2
@@ -1358,7 +1358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  respawnPoint: {x: -5, y: -3, z: 0}
+  respawnPoint: {x: -9, y: -113, z: 0}
   respawnUI: {fileID: 84819191}
   invulnTime: 0.25
 --- !u!1 &1191664663

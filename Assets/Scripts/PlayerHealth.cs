@@ -31,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
         health -= dmg;
         updateCurHpBar();
         if(health <= 0){
+            health = 0;
+            Time.timeScale = 0;
             StopCoroutine("playerGotHit");
             hitEffects(true);
             Debug.Log("dead");
@@ -53,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
     //TODO: What else needs to happen when player respawns?
     //TODO: Maybe those should happen in the button
     public void respawnPlayer(){
+        Time.timeScale = 1;
         healing(maxHealth);
         gameObject.transform.position = respawnPoint;
         PlayerController.readInput = true;
