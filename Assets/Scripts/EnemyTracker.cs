@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class EnemyTracker : MonoBehaviour
 {
-    public List<GameObject> activeEnemies;
-    public int checksPerFrame;
+    public GameObject[] activeEnemies;
+    //public int checksPerFrame;
 
     // Start is called before the first frame update
     void Start()
     {
-        activeEnemies = new List<GameObject>();
+        activeEnemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     //loop through all enemies that are all active then call move function
     void Update()
     {
-        
+        foreach(GameObject ene in activeEnemies){
+            //call movement function
+        }
     }
 }

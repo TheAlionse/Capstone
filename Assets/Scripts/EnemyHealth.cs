@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public int health;
     //if death of enemy relates to door or something else
-    public GameObject tiedObject;
+    public List<GameObject> tiedObject;
 
     private SpriteRenderer mySprite;
     private Color defaultColor;
@@ -23,7 +23,8 @@ public class EnemyHealth : MonoBehaviour
         StartCoroutine(damageEffect());
         if(health <= 0){
             if(tiedObject != null){
-                tiedObject.SendMessage("CheckToOpen", gameObject);
+                foreach(GameObject tObj in tiedObject)
+                    tObj.SendMessage("CheckToOpen", gameObject);
             }
             Destroy(gameObject);
         }

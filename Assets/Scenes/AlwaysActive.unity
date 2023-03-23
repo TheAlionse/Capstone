@@ -632,7 +632,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeEnemies: []
-  checksPerFrame: 0
 --- !u!4 &540183060
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,7 +1250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149851698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.7, y: -114, z: 0}
+  m_LocalPosition: {x: 40.3, y: -114, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1290,7 +1289,7 @@ MonoBehaviour:
   bouncePercent: 0.75
   maxJumpCount: 2
   boxSize: {x: 0.3, y: 0.05, z: 0}
-  sideAttackSize: {x: 1.4, y: 1, z: 0}
+  sideAttackSize: {x: 1.5, y: 1, z: 0}
   upAttackSize: {x: 1.5, y: 0.75, z: 0}
   downAttackSize: {x: 1, y: 1.25, z: 0}
   maxDistance: 0.5
@@ -1836,6 +1835,8 @@ GameObject:
   - component: {fileID: 3183266952363596055}
   - component: {fileID: 3579681405631996692}
   - component: {fileID: 3831113771329561347}
+  - component: {fileID: 3831113771329561348}
+  - component: {fileID: 3831113771329561349}
   m_Layer: 0
   m_Name: Dialogue System
   m_TagString: Untagged
@@ -2288,6 +2289,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showDebug: 0
   debugTextView: {fileID: 0}
+--- !u!114 &3831113771329561348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753718019333712745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26359eed0a4b9a548b69bd3d4637d27a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueRunner: {fileID: 0}
+--- !u!114 &3831113771329561349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753718019333712745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097b95c9f69f04f2d8c08a817e7786af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueView: {fileID: 7778558434535249728}
+  continueActionType: 1
+  continueActionKeyCode: 101
+  continueActionReference: {fileID: 0}
+  continueAction:
+    m_Name: Skip
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 
+      m_Path: Submit
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip
+      m_Flags: 0
+    m_Flags: 0
+  enableActionOnStart: 1
 --- !u!224 &7084386685479390493
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3122,7 +3170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: Continue "E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

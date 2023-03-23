@@ -8,11 +8,8 @@ public class YarnCommands : MonoBehaviour
     public DialogueRunner dialogueRunner;
     
     public void Awake() {
-
-        dialogueRunner.AddCommandHandler<float>(
-            "change_time",       // the name of the command
-            changeTime          // the method to run
-        );
+        dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+        dialogueRunner.AddCommandHandler<float>("change_time", changeTime);
     }
 
     public static void changeTime(float scale){

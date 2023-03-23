@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 300;
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponent<SpriteRenderer>();
         jumpCount = maxJumpCount;
@@ -305,7 +306,7 @@ public class PlayerController : MonoBehaviour
     //TODO: Seperate out 3 different side attacks and dmg
     IEnumerator SideAttack(float direction)
     {
-        Debug.Log("Side Attacking " + attackChainCount);
+        //Debug.Log("Side Attacking " + attackChainCount);
         myAnim.SetBool($"Side Attack {attackChainCount + 1}", true);
         myAttack = true;
         Vector2 prevVel = myRB.velocity;
@@ -316,7 +317,7 @@ public class PlayerController : MonoBehaviour
         enemyHit = Physics2D.BoxCast(new Vector2(transform.position.x + myHorizontal, transform.position.y), sideAttackSize, 0, transform.forward, maxDistance, layerEnemy);
         if (enemyHit)
         {
-            Debug.Log("hit side");
+            //Debug.Log("hit side");
             if (attackChainCount == 2)
             {
                 SendDamage(enemyHit.transform, attack1Dmg);
@@ -346,7 +347,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator UpAttack()
     {
-        Debug.Log("Up Attacking");
+        //.Log("Up Attacking");
         myAnim.SetBool("Up Attack", true);
         myAttack = true;
         Vector2 prevVel = myRB.velocity;
@@ -357,7 +358,7 @@ public class PlayerController : MonoBehaviour
         enemyHit = Physics2D.BoxCast(new Vector2(transform.position.x, transform.position.y + .9f), upAttackSize, 0, transform.forward, maxDistance, layerEnemy);
         if (enemyHit)
         {
-            Debug.Log("hit up");
+            //Debug.Log("hit up");
             SendDamage(enemyHit.transform, attackUpDmg);
         }
         yield return new WaitForSeconds(0.1f); //animation time?
@@ -375,7 +376,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGrounded())
         {
-            Debug.Log("Down Attacking");
+            //Debug.Log("Down Attacking");
             myAnim.SetBool("Down Attack", true);
             myAttack = true;
             Vector2 prevVel = myRB.velocity;
@@ -385,7 +386,7 @@ public class PlayerController : MonoBehaviour
             enemyHit = Physics2D.BoxCast(new Vector2(transform.position.x, transform.position.y - .9f), downAttackSize, 0, transform.forward, maxDistance, layerEnemy);
             if (enemyHit)
             {
-                Debug.Log("hit down");
+                //Debug.Log("hit down");
                 SendDamage(enemyHit.transform, attackDownDmg);
                 myRB.velocity = new Vector2(prevVel.x, jumpForce * bouncePercent);
             }
