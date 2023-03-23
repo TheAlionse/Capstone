@@ -140,6 +140,10 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     myRB.velocity = new Vector2(myHorizontal * speed, myRB.velocity.y);
+                    //slower horizontal while jumping
+                    if(jumpTime > 0){
+                         myRB.velocity = new Vector2((myHorizontal * speed) / 1.2f, myRB.velocity.y);
+                    }
                     //flips sprite and starts running animation
                     switch (myHorizontal)
                     {
@@ -322,7 +326,9 @@ public class PlayerController : MonoBehaviour
                 SendDamage(enemyHit.transform, attack3Dmg);
             }
         }
-        yield return new WaitForSeconds(0.2f); //animation time?
+        yield return new WaitForSeconds(0.15f); //animation time?
+        myRB.velocity = prevVel / 2;
+        yield return new WaitForSeconds(0.05f);
         myAttack = false;
         myRB.velocity = prevVel;
         myRB.gravityScale = gravity;

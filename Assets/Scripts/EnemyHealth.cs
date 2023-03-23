@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Probably put this into an interface if we continue to expand
+
 public class EnemyHealth : MonoBehaviour
 {
     public int health;

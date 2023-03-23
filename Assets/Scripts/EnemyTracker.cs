@@ -13,6 +13,9 @@ public class EnemyTracker : MonoBehaviour
         activeEnemies = new List<GameObject>();
     }
 
-    //Have a coroutine that loops through all the enemies and has then move
-    //then it is not bound by frames
+    //loop through all enemies that are all active then call move function
+    void Update()
+    {
+        
+    }
 }
