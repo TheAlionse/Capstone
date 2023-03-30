@@ -10,23 +10,41 @@ public class EnemyHealth : MonoBehaviour
     //if death of enemy relates to door or something else
     public List<GameObject> tiedObject;
 
+    public bool respawnMe;
+    public float respawnTimer;
+
     private SpriteRenderer mySprite;
     private Color defaultColor;
-    private void Start() {
+    private EnemyTracker myET;
+    private int curHealth;
+
+    private void Awake() {
         mySprite = gameObject.GetComponent<SpriteRenderer>();
         defaultColor = mySprite.color;
+        myET = FindObjectOfType<EnemyTracker>();
+        curHealth = health;
+    }
+
+    private void OnEnable(){
+        curHealth = health;
+        mySprite.color = defaultColor;
     }
 
     public void takeDamge(int damage){
-        health -= damage;
+        curHealth -= damage;
         Debug.Log("took damage " + damage);
         StartCoroutine(damageEffect());
-        if(health <= 0){
+        if(curHealth <= 0){
             if(tiedObject != null){
                 foreach(GameObject tObj in tiedObject)
                     tObj.SendMessage("CheckToOpen", gameObject);
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            myET.activeEnemies.Remove(gameObject);
+            if(respawnMe){
+                myET.respawnWait(gameObject, respawnTimer);
+            }     
+            gameObject.SetActive(false);   
         }
     }
 

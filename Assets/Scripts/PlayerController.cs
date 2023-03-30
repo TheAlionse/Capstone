@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
     public float dashMaxCD;
+    public GameObject dashTimer;
 
     public float fallFloor; //where player can fall to before getting reset
 
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
         mySR = GetComponent<SpriteRenderer>();
         jumpCount = maxJumpCount;
         readInput = true;
+        //TODO: Make dashtimer and maxDashCD use the same variable
     }
     // Update is called once per frame
 
@@ -253,6 +255,7 @@ public class PlayerController : MonoBehaviour
         myAnim.SetBool("Dashing", false);
         //put player back on dmg layer
         gameObject.layer = 8;
+        dashTimer.SetActive(true);
         yield return new WaitForSeconds(dashMaxCD);
         dashOnCD = false;
     }
