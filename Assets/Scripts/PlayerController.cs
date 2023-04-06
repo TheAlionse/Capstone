@@ -118,9 +118,13 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(Dash(myHorizontal));
             }
 
-            if(Input.GetButtonDown("Interact") && onSavePoint){
+            if(Input.GetButtonDown("Interact")){
                 //This could cause issues later but likely not
-                SendMessage("setRespawn", gameObject.transform.position);
+                if(onSavePoint){
+                    SendMessage("setRespawn", gameObject.transform.position);
+                }
+                
+                
             }
         }
     }

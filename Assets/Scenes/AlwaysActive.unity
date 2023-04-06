@@ -1369,7 +1369,7 @@ MonoBehaviour:
   maxHealth: 10
   respawnPoint: {x: -9, y: -113, z: 0}
   respawnUI: {fileID: 84819191}
-  invulnTime: 0.25
+  invulnTime: 0.75
 --- !u!1 &1191664663
 GameObject:
   m_ObjectHideFlags: 0
