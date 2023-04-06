@@ -12,3 +12,15 @@ title: DodgeTut
 ---
 Press shift while moving left or right in order to dodge in that direction.
 ===
+
+title: Shop1
+---
+This line won't be shown if things are still broken
+???: Nice of you to drop in.
+===
+
+title: BossIntro
+---
+???: Grr im Mr. bad guy and im a boss who is saying things to you grr
+<<set_hitbox PlaceHolderBoss true>>
+===

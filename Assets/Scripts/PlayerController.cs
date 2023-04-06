@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Yarn.Unity;
+
+
 public class PlayerController : MonoBehaviour
 {
 
@@ -42,12 +45,14 @@ public class PlayerController : MonoBehaviour
 
     private bool canFireBall;
     private bool onSavePoint;
+    private string diaStart = "";
 
     public int maxJumpCount;
 
     private int jumpCount;
     private float jumpTime;
     private bool releaseJump;
+    private DialogueRunner dialogueRunner;
 
     public Vector3 boxSize;
     public Vector3 sideAttackSize;
@@ -77,6 +82,8 @@ public class PlayerController : MonoBehaviour
         mySR = GetComponent<SpriteRenderer>();
         jumpCount = maxJumpCount;
         readInput = true;
+        dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+
         //TODO: Make dashtimer and maxDashCD use the same variable
     }
     // Update is called once per frame
@@ -120,10 +127,14 @@ public class PlayerController : MonoBehaviour
 
             if(Input.GetButtonDown("Interact")){
                 //This could cause issues later but likely not
+                //Should maybe become a switch at some point?
                 if(onSavePoint){
                     SendMessage("setRespawn", gameObject.transform.position);
                 }
-                
+                if(diaStart != ""){
+                    //TODO: Move yarn stuff out of player?
+                    dialogueRunner.StartDialogue(diaStart);
+                }
                 
             }
         }
@@ -433,6 +444,10 @@ public class PlayerController : MonoBehaviour
 
     public void changeSave(bool amOn){
         onSavePoint = amOn;
+    }
+
+    public void onDialogue(string diaStart){
+        this.diaStart = diaStart;
     }
 
     void OnDrawGizmos()
