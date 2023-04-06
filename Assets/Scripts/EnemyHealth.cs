@@ -18,6 +18,13 @@ public class EnemyHealth : MonoBehaviour
     private EnemyTracker myET;
     private int curHealth;
 
+    private void Start() {
+        mySprite = gameObject.GetComponent<SpriteRenderer>();
+        defaultColor = mySprite.color;
+        myET = FindObjectOfType<EnemyTracker>();
+        curHealth = health;
+    }
+
     private void Awake() {
         mySprite = gameObject.GetComponent<SpriteRenderer>();
         defaultColor = mySprite.color;
