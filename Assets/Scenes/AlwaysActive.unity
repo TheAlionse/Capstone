@@ -1304,9 +1304,9 @@ MonoBehaviour:
   bouncePercent: 0.75
   maxJumpCount: 2
   boxSize: {x: 0.3, y: 0.05, z: 0}
-  sideAttackSize: {x: 1.5, y: 1, z: 0}
-  upAttackSize: {x: 1.5, y: 0.75, z: 0}
-  downAttackSize: {x: 1, y: 1.25, z: 0}
+  sideAttackSize: {x: 1.6, y: 1.1, z: 0}
+  upAttackSize: {x: 1.5, y: 0.85, z: 0}
+  downAttackSize: {x: 1.1, y: 1.35, z: 0}
   maxDistance: 0.5
   layerFloor:
     serializedVersion: 2
