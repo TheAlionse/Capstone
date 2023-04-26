@@ -456,8 +456,8 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
         // Gizmos.DrawCube(tempVec-transform.forward*maxDistance, sideAttackSize);
         Gizmos.color = Color.red;
-        // Vector3 tempVec = new Vector3(transform.position.x + tempHor, transform.position.y,0f);
-        // Gizmos.DrawCube(tempVec-transform.forward*maxDistance, sideAttackSize);
+         Vector3 tempVec = new Vector3(transform.position.x + tempHor, transform.position.y,0f);
+         Gizmos.DrawWireCube(tempVec-transform.forward*maxDistance, sideAttackSize);
 
         // Vector3 tempVec2 = new Vector2(transform.position.x, transform.position.y + .9f);
         // Gizmos.DrawCube(tempVec2-transform.forward*maxDistance, upAttackSize);

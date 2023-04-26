@@ -102,4 +102,9 @@ public class PlayerHealth : MonoBehaviour
             gameObject.layer = 8;
         }
     }
+
+    public void resetGame(){
+        respawnPlayer();
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
 }

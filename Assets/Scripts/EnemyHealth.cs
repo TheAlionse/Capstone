@@ -17,6 +17,8 @@ public class EnemyHealth : MonoBehaviour
     private Color defaultColor;
     private EnemyTracker myET;
     private int curHealth;
+    
+    private Color myRed = new Color(.5f, .0f, .0f);
 
     private void Start() {
         mySprite = gameObject.GetComponent<SpriteRenderer>();
@@ -56,7 +58,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     IEnumerator damageEffect(){
-        mySprite.color = Color.red;
+        mySprite.color = myRed;
         yield return new WaitForSeconds(.2f);
         mySprite.color = defaultColor;
         yield return null;

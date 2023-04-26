@@ -16,10 +16,12 @@ public class EnemyTracker : MonoBehaviour
     }
 
     //loop through all enemies that are all active then call move function
-    void Update()
+    void FixedUpdate()
     {
         foreach(GameObject ene in activeEnemies){
-            //call movement function
+            //check if need to move
+            //these enemies should all be in a class
+            ene.SendMessage("eneMovement");
         }
     }
 
