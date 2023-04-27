@@ -526,7 +526,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 186599996}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1149851706}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: resetGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &186599996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1398,7 +1410,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Revive?
+  m_text: Unpause
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1709,6 +1721,7 @@ MonoBehaviour:
   fireballPrefab: {fileID: 2764102767327257764, guid: 95ad931c841ef9141843cb44ca719545, type: 3}
   fireballSpeed: 30
   fireballCD: 2
+  pauseScreen: {fileID: 1309495065}
   myAnim: {fileID: 1149851704}
 --- !u!95 &1149851704
 Animator:
@@ -2193,7 +2206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1785739884}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1149851703}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: pauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1785739884
 MonoBehaviour:
   m_ObjectHideFlags: 0

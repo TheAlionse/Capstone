@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     public float fireballSpeed;
     public float fireballCD;
 
+    public GameObject pauseScreen;
     private Rigidbody2D myRB;
     private SpriteRenderer mySR;
 
@@ -74,6 +75,9 @@ public class PlayerController : MonoBehaviour
 
     //Used for gizmo checking
     private float tempHor;
+
+    
+    private bool gamePaused;
 
     private void Start()
     {
@@ -136,6 +140,10 @@ public class PlayerController : MonoBehaviour
                     dialogueRunner.StartDialogue(diaStart);
                 }
                 
+            }
+
+            if(Input.GetButtonDown("Cancel")){
+                pauseGame();
             }
         }
     }
@@ -450,14 +458,25 @@ public class PlayerController : MonoBehaviour
         this.diaStart = diaStart;
     }
 
+    public void pauseGame(){
+        gamePaused = !gamePaused;
+        if(gamePaused){
+            Time.timeScale = 0;
+        }
+        else{
+            Time.timeScale = 1;
+        }
+        pauseScreen.SetActive(gamePaused);
+    }
+    
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
         // Gizmos.DrawCube(tempVec-transform.forward*maxDistance, sideAttackSize);
-        Gizmos.color = Color.red;
-         Vector3 tempVec = new Vector3(transform.position.x + tempHor, transform.position.y,0f);
-         Gizmos.DrawWireCube(tempVec-transform.forward*maxDistance, sideAttackSize);
+        //Gizmos.color = Color.red;
+         //Vector3 tempVec = new Vector3(transform.position.x + tempHor, transform.position.y,0f);
+         //Gizmos.DrawWireCube(tempVec-transform.forward*maxDistance, sideAttackSize);
 
         // Vector3 tempVec2 = new Vector2(transform.position.x, transform.position.y + .9f);
         // Gizmos.DrawCube(tempVec2-transform.forward*maxDistance, upAttackSize);
